@@ -26,14 +26,20 @@ function TodoList() {
     return axios.post("http://localhost:5000/data", todo);
   }
 
+  // DELETE DATA
   function deleteTodo(id) {
     return axios.delete(`${url}/${id}`);
+  }
+
+  //UPDATE DATA
+  function updateTodo(id, todo) {
+    return axios.put(`${url}/${id}`, todo);
   }
 
   return (
     <div>
       <FormAdd addData={addTodo} />
-      {todos.map((todo) => <ListTodo deleteData={deleteTodo} todo={todo.todo} key={todo.id} id={todo.id} />).reverse()}
+      {todos.map((todo) => <ListTodo updateData={updateTodo} deleteData={deleteTodo} todo={todo.todo} key={todo.id} id={todo.id} />).reverse()}
     </div>
   );
 }
